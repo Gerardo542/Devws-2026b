@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=devws-2026b:* node ./bin/www",
+    "start": "DEBUG=devws-2026b:* node ./server/bin/www",
     "saludo" : "echo 'Hola mundo!'"
   },
   "dependencies": {
