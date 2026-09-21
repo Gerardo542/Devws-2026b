@@ -2,6 +2,7 @@
   "name": "devws-2026b",
   "version": "0.0.0",
   "private": true,
+  "type":"module" ,
   "scripts": {
     "start": "DEBUG=devws-2026b:* node ./server/bin/www",
     "saludo" : "echo 'Hola mundo!'"
