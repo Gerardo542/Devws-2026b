@@ -4,7 +4,8 @@
   "private": true,
   "type":"module" ,
   "scripts": {
-    "start": "DEBUG=devws-2026b:* node ./server/bin/www",
+    "start": "node ./server/bin/www",
+    "dev": "DEBUG=devws-2026b:* node ./server/bin/www.js",
     "saludo" : "echo 'Hola mundo!'"
   },
   "dependencies": {

@@ -14,11 +14,14 @@ import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'node:path';
+import createDebug from 'debug';
 //creando las variables
 const  __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);  
+const debug = createDebug('devws-2026b:server');
 
 //crea la aplicacion de express
+debug('🔨 Creando Backend');
 var app = express();
 
 // configurar el motor de vistas
@@ -29,8 +32,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+debug('🔨 Creando servidor estatico');
 app.use(express.static(path.join(__dirname,'..','public')));
 
+debug('🚗Registrando rutas');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
