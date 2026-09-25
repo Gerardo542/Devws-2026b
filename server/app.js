@@ -10,8 +10,13 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 //importa las rutas de la aplicacion
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'node:path';
+//creando las variables
+const  __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);  
 
 //crea la aplicacion de express
 var app = express();
@@ -45,4 +50,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
