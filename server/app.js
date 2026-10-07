@@ -12,9 +12,12 @@ import logger from 'morgan';
 //importa las rutas de la aplicacion
 import indexRouter from '#routes/index.js';
 import usersRouter from '#routes/users.js';
+import{registerHelpers} from './lib/vite.js';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import createDebug from 'debug';
+//importando el template engine de handlebars
+import hbs from 'hbs';
 //creando las variables
 const  __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);  
@@ -27,11 +30,17 @@ var app = express();
 // configurar el motor de vistas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//registro helper
+registerViteHelpers(hbs);
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//archivos estaticos para produccion
+if(process.env.NODE_ENV === 'production'){
+app.use(express.static(path.join(__dirname, '..', 'dist')));
+}
 debug('🔨 Creando servidor estatico');
 app.use(express.static(path.join(__dirname,'..','public')));
 

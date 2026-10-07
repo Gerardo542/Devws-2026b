@@ -1,5 +1,6 @@
 //Biblioteca de file stream
 import fs from 'node.fs'
+import { dirname } from 'node:path';
 //Biblioteca de rutas
 import path from 'node.path'
 import { fileURLToPath } from 'node:url';
@@ -36,4 +37,32 @@ export function viteAssets() {
             return''
         }
     }
+    //leyendo y parseando a Json el archivo
+    //de manifiesto que genera vite ne la compilacion
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+
+    const mainEntry = manifest['main.js']
+//Guarda en el main.js
+if (!mainEntry){
+console.warn('Archivo main.jsno esta disponible en el manifiesto de vite')
+return ''
+}
+let tags = ''
+//Generando las etiquetas de los estilos
+if (mainEntry.css) {
+    mainEntry.css.forEach(cssFile => {
+        tags += `<link rel="stylesheet" href="/dist/.vite/${cssFile}">`
+    });
+}
+tags += `<script type="module" src="/dist/.vite/${mainEntry.file}"defer></script>`
+return tags
+}
+
+//Funcion registradora de handlebars
+export function registerViteHelpers(hbs) {
+    hbs.registerHelper('viteAssets', ()=>{
+        //sanitizando la salida del helper
+        return new hbs.SafeString(viteAssets())
+    })
+
 }
