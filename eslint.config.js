@@ -26,7 +26,10 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: "latest",
       sourceType:"module",
-       globals: {...globals.browser} } },
+       globals: {...globals.browser} } ,
+      rules:{"no-unused-vars":["error",{"argsIgnorePattern" : "^_"}]}
+    },
+    
 
        //4) Opcional si hay js en public
   { files: ["public/**/*.{js}"], 
