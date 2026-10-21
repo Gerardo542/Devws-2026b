@@ -1,6 +1,10 @@
 {
-"editor.fontSize": 30,
-"terminal.integrated.fontSize": 30,
-"editor.tabSize": 4,
-"editor.insertSpaces": true
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.codeActionsOnSave": {
+  "source.fixAll.eslint": "always"
+  }
 }
