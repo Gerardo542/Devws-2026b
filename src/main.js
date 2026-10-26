@@ -1,5 +1,6 @@
-//importando los estilos de la pagina
+// importando los estilos de la pagina
 import './styles/main.css'
 
-//imprimiendo en consola
-console.log("🎉VITE⚡+EXPRESS🚂working!!")
+// imprimiendo en consola
+// eslint-disable-next-line no-console
+console.log('🎉VITE⚡+EXPRESS🚂working!!')
