@@ -2,7 +2,7 @@ import createError from 'http-errors'
 import express from 'express'
 import path, { dirname } from 'node:path'
 import cookieParser from 'cookie-parser'
-import logger from 'morgan'
+import morgan from 'morgan'
 import createDebug from 'debug'
 import { fileURLToPath } from 'node:url'
 import hbs from 'hbs'
@@ -31,7 +31,7 @@ app.set('view engine', 'hbs')
 registerViteHelpers(hbs)
 
 // Configura middlewares de la aplicacion
-app.use(logger('dev'))
+app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
