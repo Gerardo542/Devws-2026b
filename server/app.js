@@ -14,39 +14,36 @@ import cookieParser from 'cookie-parser';
 // ❌var logger = require('morgan');
 import morgan from 'morgan';
 // importando biblioteca de debug
-import createDebug from 'debug';
+//import createDebug from 'debug';
 // Imports para crear dirname
 import { fileURLToPath } from 'node:url';
 
-// Importando el template engine de Handlebars
-import hbs from 'hbs';
+
 
 // Importan las rutas de la aplicacion
 // var indexRouter = require('./routes/index');
 import indexRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
 // var usersRouter = require('./routes/users');
 import usersRouter from '#routes/users.js'; // eslint-disable-line import-x/no-rename-default
-// Importando el registrador del Helper
-import { registerViteHelper } from './lib/vite.js';
+//importando la funcion de configuracion de Hbs
+import configureHandlebars from './lib/handlebars.js';
 // Importando la configuracion de winston logger
 import logger from "./lib/winston.js"
 
 // Creacion del objeto debug
-const debug = createDebug('dwssr-2026:server');
+//const debug = createDebug('dwssr-2026:server');
 // Creando las variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Crear la aplicacion express
-debug('🔨  Creando backend');
+//Creando backend
+logger.info('🔨  Creando backend');
 // Crea la aplicacion express
 const app = express();
 
 // Configura el motor de vistas con hbs
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-// Registro helper
-registerViteHelper(hbs);
+configureHandlebars(app)
 
 // Configura middlewares de la aplicacion
 app.use(morgan('dev', { stream: { write: (msg) => logger.info(msg.trim()) } }));
@@ -60,11 +57,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Configura la carpeta de archivos estaticos
-debug('🔨  Creando servidor de archivos estaticos');
+logger.info('🔨  Creando servidor de archivos estaticos');
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Registramos rutas de la aplicacion
-debug('🛣️ Registrando rutas');
+logger.info('🛣️ Registrando rutas');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
