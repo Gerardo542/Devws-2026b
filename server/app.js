@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 
 // Importan las rutas de la aplicacion
 // var indexRouter = require('./routes/index');
-import indexRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
+import homeRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
 // var usersRouter = require('./routes/users');
 import usersRouter from '#routes/users.js'; // eslint-disable-line import-x/no-rename-default
 //importando la funcion de configuracion de Hbs
@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Registramos rutas de la aplicacion
 logger.info('🛣️ Registrando rutas');
-app.use('/', indexRouter);
+app.use('/', homeRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
